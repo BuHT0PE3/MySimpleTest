@@ -31,12 +31,12 @@ public class Processor {
         // 6. Implementation must perform minimal possible number of actions (AddFirst, AddLast, AddBefore, AddAfter, Remove).
         // 7. Implementation must be fast and do not allocate excess memory.
     	
-    	Map<Double, Integer> equalMap = convertToMap(mustBeEqualTo);
-		Map<Double, Integer> expectedMap = convertToMap(expectedOutput);
-		Map<Double, Integer> amountOfActionsMap = combineMaps(equalMap, expectedMap);
+    	Map<Double, Integer> numberOfValuesOfEqualList = convertToMap(mustBeEqualTo);
+		Map<Double, Integer> numberOfValuesOfExpectedList = convertToMap(expectedOutput);
+		Map<Double, Integer> numberOfActionsWithEqualList = combineMaps(numberOfValuesOfEqualList, numberOfValuesOfExpectedList);
 		
 		Entry<Double> currentEntry = mustBeEqualTo.getFirst();
-		Iterator<Map.Entry<Double, Integer>> iterator = amountOfActionsMap.entrySet().iterator();
+		Iterator<Map.Entry<Double, Integer>> iterator = numberOfActionsWithEqualList.entrySet().iterator();
 		Map.Entry<Double, Integer> currentPair;
 		
 		if (expectedOutput.getCount() == 0) {
@@ -66,7 +66,7 @@ public class Processor {
 					}
 				}
 			}
-			iterator = amountOfActionsMap.entrySet().iterator();
+			iterator = numberOfActionsWithEqualList.entrySet().iterator();
 			currentEntry = mustBeEqualTo.getFirst();
 			
 			while (iterator.hasNext()) {
